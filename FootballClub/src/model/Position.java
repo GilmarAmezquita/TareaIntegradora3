@@ -1,4 +1,4 @@
 package model;
 public enum Position{
-	Gaol_keeper, Defender, Midfielder, Forward
+	Goal_keeper, Defender, Midfielder, Forward
 }

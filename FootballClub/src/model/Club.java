@@ -12,11 +12,9 @@ public class Club{
 	private ArrayList<Employee> employees;
 	private Team[] teams;
 	
-	//DRESSING ROOMS
-	Player[][] dressingRoom1;
-	Player[][] dressingRoom2;
-	//OFFICE SECTOR
-	Coach[][] officeSector;
+	private Player[][] dressingRoom1;
+	private Player[][] dressingRoom2;
+	private Coach[][] officeSector;
 	
 	public Club(String nit, String name, String fundationDate){
 		this.nit = nit;
@@ -129,7 +127,7 @@ public class Club{
 			}
 		}
 	}
-	public void assignDressingRoom(String name, int dressingRoom){
+	public boolean assignDressingRoom(String name, int dressingRoom){
 		boolean finded = false;
 		int i = 0;
 		for(i = 0; i<TEAMS && !finded; i++){
@@ -178,6 +176,7 @@ public class Club{
 				}
 			}
 		}
+		return added;
 	}
 	public String getDressingsRooms(){
 		String content = "************DRESSING ROOM 1************\n";
@@ -352,6 +351,25 @@ public class Club{
 		content += "** Nit: "+getNit()+"\n";
 		content += "** Fundation Date: "+getFundationDate()+"\n";
 		content += "** Employees: "+employees.size()+"\n";
+		return content;
+	}
+	public boolean addLineUpToTeam(String name, String date, int tacticNum, String formation){
+		boolean added = false;
+		for(int i = 0; i<TEAMS && !added; i++){
+			if(teams[i].getName().equals(name)){
+				added = teams[i].addLineUp(date, tacticNum, formation);
+			}
+		}
+		return added;
+	}
+	public String getTeamLineUp(String name){
+		boolean showed = false;
+		String content = "";
+		for(int i = 0; i<TEAMS && !showed; i++){
+			if(teams[i].getName().equals(name)){
+				content = teams[i].getLineUps();
+			}
+		}
 		return content;
 	}
 }

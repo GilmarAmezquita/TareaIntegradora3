@@ -12,15 +12,17 @@ public class Menu{
 	private final static int TEAM_REMOVE_TECHNICAL_ASSISTANT = 8;
 	private final static int TEAM_REMOVE_PLAYER = 9;
 	private final static int ASSIGN_TEAM_DRESSING_ROOM = 10;
-	private final static int PRINT_TEAM_INFO = 11;
-	private final static int PRINT_EMPLOYEES = 12;
-	private final static int PRINT_PLAYERS = 13;
-	private final static int PRINT_HEAD_COACHS = 14;
-	private final static int PRINT_TECHNICAL_ASSISTANTS = 15;
-	private final static int PRINT_CLUB_INFO = 16;
-	private final static int PRINT_DRESSING_ROOMS = 17;
-	private final static int PRINT_OFFICE_SECTOR = 18;
-	private final static int EXIT = 19;
+	private final static int TEAM_ADD_LINE_UP = 11;
+	private final static int PRINT_TEAM_INFO = 12;
+	private final static int PRINT_TEAM_LINE_UPS = 13;
+	private final static int PRINT_EMPLOYEES = 14;
+	private final static int PRINT_PLAYERS = 15;
+	private final static int PRINT_HEAD_COACHS = 16;
+	private final static int PRINT_TECHNICAL_ASSISTANTS = 17;
+	private final static int PRINT_CLUB_INFO = 18;
+	private final static int PRINT_DRESSING_ROOMS = 19;
+	private final static int PRINT_OFFICE_SECTOR = 20;
+	private final static int EXIT = 21;
 	
 	private static Scanner sc = new Scanner(System.in);
 	private Club club;
@@ -51,25 +53,27 @@ public class Menu{
 	*/
 	public void showMenu(){
 		System.out.println("\n**************MENU**************");
-		System.out.println("(1) Agregar un jugador");
-		System.out.println("(2) Agregar un entrenador principal");
-		System.out.println("(3) Agregar un asistente tecnico");
+		System.out.println("(1) Contratar un jugador");
+		System.out.println("(2) Contratar un entrenador principal");
+		System.out.println("(3) Contratar un asistente tecnico");
 		System.out.println("(4) Despedir un empleado");
 		System.out.println("(5) Asignar entrenador principal a un equipo");
-		System.out.println("(6) Añadir asistente tecnico a un equipo");
-		System.out.println("(7) Añadir un jugador a un equipo");
+		System.out.println("(6) Agregar asistente tecnico a un equipo");
+		System.out.println("(7) Agregar un jugador a un equipo");
 		System.out.println("(8) Eliminar un asistente tecnico de un equipo");
 		System.out.println("(9) Eliminar un jugador de un equipo");
 		System.out.println("(10) Asignar un camerino a un equipo");
-		System.out.println("(11) Listar la informacion de un equipo");
-		System.out.println("(12) Listar Empleados");
-		System.out.println("(13) Listar Jugadores");
-		System.out.println("(14) Listar Entrenadores Principales");
-		System.out.println("(15) Listar Asistentes Tecnicos");
-		System.out.println("(16) Imprimir la informacion del club");
-		System.out.println("(17) Imprimir los camerinos");
-		System.out.println("(18) Imprimir el sector de oficinas");
-		System.out.println("(19) Salir");
+		System.out.println("(11) Agregar una alineacion a un equipo");
+		System.out.println("(12) Listar la informacion de un equipo");
+		System.out.println("(13) Imprimir las alineaciones de un equipo");
+		System.out.println("(14) Listar Empleados");
+		System.out.println("(15) Listar Jugadores");
+		System.out.println("(16) Listar Entrenadores Principales");
+		System.out.println("(17) Listar Asistentes Tecnicos");
+		System.out.println("(18) Imprimir la informacion del club");
+		System.out.println("(19) Imprimir los camerinos");
+		System.out.println("(20) Imprimir el sector de oficinas");
+		System.out.println("(21) Salir");
 		System.out.println("**************MENU**************");
 	}
 	/**
@@ -332,6 +336,36 @@ public class Menu{
 			return "Se elimino el jugador del equipo";
 		}else return "No se pudo eliminar el jugador del equipo";
 	}
+	public String assignDressingRoomToTeam(){
+		System.out.println("Ingrese el numero de camerino al que asignara un equipo:");
+		System.out.println("(1) Camerino 1(7x6)\n(2) Camerino 2(7x7)");
+		System.out.print("Opcion: ");
+		int dressingRoom = sc.nextInt();
+		sc.nextLine();
+		System.out.println("Ingrese el nombre del equipo:");
+		String name = sc.nextLine();
+		boolean assigned = club.assignDressingRoom(name, dressingRoom);
+		if(assigned){
+			return "Se asigno correctamente el camerino";
+		}else return "No se pudo asignar el camerino";
+	}
+	public String addLineUpToTeam(){
+		System.out.println("Ingrese el nombre del equipo:");
+		String name = sc.nextLine();
+		System.out.println("Ingrese la fecha de la alineacion:");
+		String date = sc.nextLine();
+		System.out.println("Ingrese el tipo de tactica de la alineacion:");
+		System.out.println("(1) Posesion\n(2) Contraataque\n(3) Presion alte\n(4) Por defecto");
+		System.out.print("Opcion: ");
+		int tacticNum = sc.nextInt();
+		sc.nextLine();
+		System.out.println("Ingrese la formacion de la alineacion (x-y-z):");
+		String formation = sc.nextLine();
+		boolean added = club.addLineUpToTeam(name, date, tacticNum, formation);
+		if(added){
+			return "Se agrego correctamente la alineacion";
+		}else return "No se pudo agregar la alineacion";
+	}
 	/**
 	* Gets the team's information
 	* <b> pre: </b> The team must exist <br>
@@ -342,6 +376,12 @@ public class Menu{
 		System.out.println("Ingrese el nombre del equipo:");
 		String name = sc.nextLine();
 		String content = club.getTeamInfo(name);
+		return content;
+	}
+	public String getTeamLineUps(){
+		System.out.println("Ingrese el nombre del equipo:");
+		String name = sc.nextLine();
+		String content = club.getTeamLineUp(name);
 		return content;
 	}
 	/**
@@ -380,10 +420,16 @@ public class Menu{
 				System.out.println(teamRemovePlayer());
 				break;
 			case ASSIGN_TEAM_DRESSING_ROOM:
-			
+				System.out.println(assignDressingRoomToTeam());
+				break;
+			case TEAM_ADD_LINE_UP:
+				System.out.println(addLineUpToTeam());
 				break;
 			case PRINT_TEAM_INFO:
 				System.out.println(getTeamInfo());
+				break;
+			case PRINT_TEAM_LINE_UPS:
+				System.out.println(getTeamLineUps());
 				break;
 			case PRINT_EMPLOYEES:
 				System.out.println(club.getEmployeesInfo());
