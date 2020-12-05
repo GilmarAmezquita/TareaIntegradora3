@@ -256,6 +256,16 @@ public class Club{
 			}
 		}
 	}
+	/**
+	* Assign dressing room to a team
+	* <b> pre: </b> The dressing room number can only be 1 or 2<br>
+	* <b> post: </b>
+	*			1. Returns true if the dressing room was assigned <br>
+	*			2. Returns false if the dressing room couldn't be assigned
+	* @param name Team's name
+	* @param dressingRoom Dressing room number
+	* @return added
+	*/
 	public boolean assignDressingRoom(String name, int dressingRoom){
 		boolean finded = false;
 		int i = 0;
@@ -307,6 +317,12 @@ public class Club{
 		}
 		return added;
 	}
+	/**
+	* Get an simulate image of the dressing room, 1 is an occupied space and 0 is an empty space
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @return content
+	*/
 	public String getDressingsRooms(){
 		String content = "************DRESSING ROOM 1************\n";
 		for(int i = 0; i<ROOM_SIZE_2; i++){
@@ -328,6 +344,12 @@ public class Club{
 		}
 		return content;
 	}
+	/**
+	* Get an simulate image of the office sector, 1 is an occupied space and 0 is an empty space
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @return content
+	*/
 	public String getOfficeSector(){
 		String content = "************OFFICE SECTOR************\n";
 		for(int i = 0; i<ROOM_SIZE_1; i++){

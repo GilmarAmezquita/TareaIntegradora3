@@ -24,10 +24,8 @@ public class Menu{
 	private final static int PRINT_DRESSING_ROOMS = 20;
 	private final static int PRINT_OFFICE_SECTOR = 21;
 	private final static int EXIT = 22;
-	
 	private static Scanner sc = new Scanner(System.in);
 	private Club club;
-	
 	public Menu(){
 		this.club = readInitialData();
 	}
