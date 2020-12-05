@@ -266,7 +266,6 @@ public class Club{
 	* @param dressingRoom Dressing room number
 	* @return added
 	*/
-	//ASIGNA TODO EN NULL
 	public boolean assignDressingRoom(String name, int dressingRoom){
 		boolean finded = false;
 		int i = 0;
