@@ -69,9 +69,16 @@ public class Club{
 	public String getFundationDate(){
 		return fundationDate;
 	}
-	
-	//ADD EMPLOYEES
-	public boolean findEmployee(String name){
+	/**
+	* Find a employee with his name
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	*			1. Returns true if the employee exists <br>
+	*			2. Return false if the employee doesn't exist
+	* @param name Employee's name
+	* @return finded
+	*/
+	private boolean findEmployee(String name){
 		boolean finded = false;
 		for(int i = 0; i<employees.size() && !finded; i++){
 			if(employees.get(i).getName().equals(name)){
@@ -80,6 +87,29 @@ public class Club{
 		}
 		return finded;
 	}
+	/**
+	* Contract a new employee to be a player
+	* <b> pre: </b> 
+	*			1. The employee's name must be unique <br>
+	*			2. The employee's identifier must be unique <br>
+	*			3. The employee's salary must be natural numbers <br>
+	*			4. The Employee's state is true if the state is active <br>
+	*			5. The Employee's state is false if the state is inactive <br>
+	*			6. The employee's t-shirt number must be unique <br>
+	*			7. The position number can only be between 1 and 4 <br>
+	* <b> post: </b>
+	*			1. Returns true if the employee was added <br>
+	*			2. Returns false if the employee couldn't be added
+	* @param name Employee's name
+	* @param identifier Employee's identifier
+	* @param salary Employee's salary
+	* @param state Employee's state
+	* @param tShirtNumber Employee's t-shirt number
+	* @param goals Employee's goals in the football club
+	* @param avarageQualification
+	* @param numPosition
+	* @return added
+	*/
 	public boolean addEmployee(String name, int identifier, int salary, boolean state, int tShirtNumber, int goals, double avarageQualification,int numPosition){
 		boolean finded = findEmployee(name);
 		boolean added = false;
@@ -90,6 +120,26 @@ public class Club{
 		}
 		return added;
 	}
+	/**
+	* Contract a new employee to be a head coach
+	* <b> pre: </b> 
+	*			1. The employee's name must be unique <br>
+	*			2. The employee's identifier must be unique <br>
+	*			3. The employee's salary must be natural numbers <br>
+	*			4. The Employee's state is true if the state is active <br>
+	*			5. The Employee's state is false if the state is inactive <br>
+	* <b> post: </b>
+	*			1. Returns true if the employee was added <br>
+	*			2. Returns false if the employee couldn't be added
+	* @param name Employee's name
+	* @param identifier Employee's identifier
+	* @param salary Employee's salary
+	* @param state Employee's state
+	* @param yearsExperience Employee's years of experience
+	* @param teamsInRace Teams that the employee has managed during his career
+	* @param championshipsAchieved Employee's championships won
+	* @return added
+	*/
 	public boolean addEmployee(String name, int identifier, int salary, boolean state, int yearsExperience, int teamsInRace, int championshipsAchieved){
 		boolean finded = findEmployee(name);
 		boolean added = false;
@@ -102,11 +152,33 @@ public class Club{
 		}
 		return added;
 	}
-	public boolean addEmployee(String name, int identifier, int salary, boolean state, int yearsExperience, boolean player, int[] numExpertises){
+	/**
+	* Contract a new employee to be a technical assistant
+	* <b> pre: </b> 
+	*			1. The employee's name must be unique <br>
+	*			2. The employee's identifier must be unique <br>
+	*			3. The employee's salary must be natural numbers <br>
+	*			4. The Employee's state is true if the state is active <br>
+	*			5. The Employee's state is false if the state is inactive <br>
+	*			6. wasPlayer is true if the employee was a player <br>
+	*			7. wasPlayer is false if the employee wasn't a player
+	* <b> post: </b>
+	*			1. Returns true if the employee was added <br>
+	*			2. Returns false if the employee couldn't be added
+	* @param name Employee's name
+	* @param identifier Employee's identifier
+	* @param salary Employee's salary
+	* @param state Employee's state
+	* @param yearsExperience Employee's years of experience
+	* @param wasPlayer
+	* @param numExpertises Employee's expertises
+	* @return added
+	*/
+	public boolean addEmployee(String name, int identifier, int salary, boolean state, int yearsExperience, boolean wasPlayer, int[] numExpertises){
 		boolean finded = findEmployee(name);
 		boolean added = false;
 		if(!finded){
-			Employee newEmployee = new TechnicalAssistant(name, identifier, salary, state, yearsExperience, player, numExpertises);
+			Employee newEmployee = new TechnicalAssistant(name, identifier, salary, state, yearsExperience, wasPlayer, numExpertises);
 			employees.add(newEmployee);
 			added = true;
 			Coach newCoach = (Coach) newEmployee;
@@ -114,6 +186,16 @@ public class Club{
 		}
 		return added;
 	}
+	/**
+	* Throw an employee of the football club
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	*			1. Returns true if the employee was delated <br>
+	*			2. Returns false if the employee couldn't be delated
+	* @param name Employee's name
+	* @param identifier Employee's identifier
+	* @return delated
+	*/
 	public boolean delateEmployee(String name, int identifier){
 		boolean delated = false;
 		for(int i = 0; i<employees.size() && !delated; i++){
@@ -122,12 +204,28 @@ public class Club{
 					Coach delatedCoach = (Coach) employees.get(i);
 					delateFromOfficeSector(delatedCoach);
 				}
+				if(employees.get(i) instanceof Player){
+					for(int j = 0; j<TEAMS; j++){
+						removeTeamPlayer(teams[i].getName(), employees.get(i).getName(), employees.get(i).getIdentifier());
+					}
+				}
+				if(employees.get(i) instanceof TechnicalAssistant){
+					for(int j = 0; j<TEAMS; j++){
+						removeTeamTechnicalAssistant(teams[i].getName(), employees.get(i).getName(), employees.get(i).getIdentifier());
+					}
+				}
 				employees.remove(i);
 				delated = true;
 			}
 		}
 		return delated;
 	}
+	/**
+	* Add a coach to the office sector
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @param coach Coach to be added
+	*/
 	private void addToOfficeSector(Coach coach){
 		boolean added = false;
 		for(int i = 0; i<ROOM_SIZE_1 &&  !added; i++){
@@ -139,6 +237,12 @@ public class Club{
 			}
 		}
 	}
+	/**
+	* Delete a coach from the office sector
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @param coach Coach to be delated
+	*/
 	private void delateFromOfficeSector(Coach coach){
 		boolean removed = false;
 		for(int i = 0; i<ROOM_SIZE_1; i++){
@@ -294,6 +398,17 @@ public class Club{
 		}
 		return content;
 	}
+	/**
+	* Add a head coach to a team
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	*			1. Returns true if the head coach was added <br>
+	*			2. Returns false if the head coach couldn't be added
+	* @param name Team's name
+	* @param coachName Coach's name
+	* @param identifier Coach's identifier
+	* @return added
+	*/
 	public boolean addTeamHeadCoach(String name, String coachName, int identifier){
 		boolean added = false;
 		for(int i = 0; i<TEAMS && !added; i++){
@@ -311,6 +426,17 @@ public class Club{
 		}
 		return added;
 	}
+	/**
+	* Add a technical assistant to a team
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	*			1. Returns true if the technical assistant was added <br>
+	*			2. Returns false if the technical assistant couldn't be added
+	* @param name Team's name
+	* @param technicalName Technical assistant's name
+	* @param identifier Technical assistant's identifier
+	* @return added
+	*/
 	public boolean addTeamTechnicalAssistant(String name, String technicalName, int identifier){
 		boolean added = false;
 		for(int i = 0; i<TEAMS && !added; i++){
@@ -327,15 +453,17 @@ public class Club{
 		}
 		return added;
 	}
-	public boolean removeTeamTechnicalAssistant(String name, String technicalName, int identifier){
-		boolean removed = false;
-		for(int i = 0; i<TEAMS && !removed; i++){
-			if(teams[i].getName().equals(name)){
-				removed = teams[i].removeTechnicalAssistant(technicalName, identifier);
-			}
-		}
-		return removed;
-	}
+	/**
+	* Add a player to a team
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	*			1. Returns true if the player was added <br>
+	*			2. Returns false if the player couldn't be added
+	* @param name Team's name
+	* @param playerName Player's name
+	* @param identifier Player's identifier
+	* @return added
+	*/
 	public boolean addTeamPlayer(String name, String playerName, int identifier){
 		boolean added = false;
 		for(int i = 0; i<TEAMS; i++){
@@ -352,6 +480,57 @@ public class Club{
 		}
 		return added;
 	}
+	/**
+	* Removed the head coach from a team
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	*			1. Returns true if the head coach was removed <br>
+	*			2. Returns false if the head coach couldn't be removed
+	* @param name Team's name
+	* @param coachName Head coach's name
+	* @param identifier Head coach's identifier
+	* @return removed
+	*/
+	public boolean removeTeamHeadCoach(String name, String coachName, int identifier){
+		boolean removed = false;
+		for(int i = 0; i<TEAMS && !removed; i++){
+			if(teams[i].getName().equals(name)){
+				removed = teams[i].removeHeadCoach(coachName, identifier);
+			}
+		}
+		return removed;
+	}
+	/**
+	* Remove a technical assistant from a team
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	*			1. Returns true if the technical assistant was removed
+	*			2. Returns false if the technical assistant couldn't be removed
+	* @param name Team's name
+	* @param technicalName Technical assistant's name
+	* @param identifier Technical assistant's identifier
+	* @return removed
+	*/
+	public boolean removeTeamTechnicalAssistant(String name, String technicalName, int identifier){
+		boolean removed = false;
+		for(int i = 0; i<TEAMS && !removed; i++){
+			if(teams[i].getName().equals(name)){
+				removed = teams[i].removeTechnicalAssistant(technicalName, identifier);
+			}
+		}
+		return removed;
+	}
+	/**
+	* Remove a player from a team
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	*			1. Returns true if the player was removed
+	*			2. Returns false if the player couldn't be removed
+	* @param name Team's name
+	* @param playerName Player's name
+	* @param identifier Player's identifier
+	* @return removed
+	*/
 	public boolean removeTeamPlayer(String name, String playerName, int identifier){
 		boolean removed = false;
 		for(int i = 0; i<TEAMS && !removed; i++){
@@ -361,23 +540,15 @@ public class Club{
 		}
 		return removed;
 	}
-	public String getTeamInfo(String name){
-		String content = "";
-		for(int i = 0; i<TEAMS; i++){
-			if(teams[i].getName().equals(name)){
-				content += teams[i].getInfo();
-			}
-		}
-		return content;
-	}
-	public String getInfo(){
-		String content = "************CLUB************\n";
-		content += "** Name: "+getName()+"\n";
-		content += "** Nit: "+getNit()+"\n";
-		content += "** Fundation Date: "+getFundationDate()+"\n";
-		content += "** Employees: "+employees.size()+"\n";
-		return content;
-	}
+	/**
+	* Add a line-up to a team
+	* <b> pre: </b> The tactic number can only be between 1 and 4<br>
+	* <b> post: </b>
+	* @param name Team's name
+	* @param date Date to be used the line-up
+	* @param tacticNum 
+	* @param formation
+	*/
 	public boolean addLineUpToTeam(String name, String date, int tacticNum, String formation){
 		boolean added = false;
 		for(int i = 0; i<TEAMS && !added; i++){
@@ -387,6 +558,43 @@ public class Club{
 		}
 		return added;
 	}
+	/**
+	* Get the team's information
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @param name Team's name
+	* @return content
+	*/
+	public String getTeamInfo(String name){
+		String content = "";
+		for(int i = 0; i<TEAMS; i++){
+			if(teams[i].getName().equals(name)){
+				content += teams[i].getInfo();
+			}
+		}
+		return content;
+	}
+	/**
+	* Get the club's information
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @return content
+	*/
+	public String getInfo(){
+		String content = "************CLUB************\n";
+		content += "** Name: "+getName()+"\n";
+		content += "** Nit: "+getNit()+"\n";
+		content += "** Fundation Date: "+getFundationDate()+"\n";
+		content += "** Employees: "+employees.size()+"\n";
+		return content;
+	}
+	/**
+	* Get the line-ups information of a team
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @param name Team's name
+	* @return content
+	*/
 	public String getTeamLineUp(String name){
 		boolean showed = false;
 		String content = "";

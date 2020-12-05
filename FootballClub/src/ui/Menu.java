@@ -9,20 +9,21 @@ public class Menu{
 	private final static int TEAM_ADD_HEAD_COACH = 5;
 	private final static int TEAM_ADD_TECHNICAL_ASSISTANT = 6;
 	private final static int TEAM_ADD_PLAYER = 7;
-	private final static int TEAM_REMOVE_TECHNICAL_ASSISTANT = 8;
-	private final static int TEAM_REMOVE_PLAYER = 9;
-	private final static int ASSIGN_TEAM_DRESSING_ROOM = 10;
-	private final static int TEAM_ADD_LINE_UP = 11;
-	private final static int PRINT_TEAM_INFO = 12;
-	private final static int PRINT_TEAM_LINE_UPS = 13;
-	private final static int PRINT_EMPLOYEES = 14;
-	private final static int PRINT_PLAYERS = 15;
-	private final static int PRINT_HEAD_COACHS = 16;
-	private final static int PRINT_TECHNICAL_ASSISTANTS = 17;
-	private final static int PRINT_CLUB_INFO = 18;
-	private final static int PRINT_DRESSING_ROOMS = 19;
-	private final static int PRINT_OFFICE_SECTOR = 20;
-	private final static int EXIT = 21;
+	private final static int TEAM_REMOVE_HEAD_COACH = 8;
+	private final static int TEAM_REMOVE_TECHNICAL_ASSISTANT = 9;
+	private final static int TEAM_REMOVE_PLAYER = 10;
+	private final static int ASSIGN_TEAM_DRESSING_ROOM = 11;
+	private final static int TEAM_ADD_LINE_UP = 12;
+	private final static int PRINT_TEAM_INFO = 13;
+	private final static int PRINT_TEAM_LINE_UPS = 14;
+	private final static int PRINT_EMPLOYEES = 15;
+	private final static int PRINT_PLAYERS = 16;
+	private final static int PRINT_HEAD_COACHS = 17;
+	private final static int PRINT_TECHNICAL_ASSISTANTS = 18;
+	private final static int PRINT_CLUB_INFO = 19;
+	private final static int PRINT_DRESSING_ROOMS = 20;
+	private final static int PRINT_OFFICE_SECTOR = 21;
+	private final static int EXIT = 22;
 	
 	private static Scanner sc = new Scanner(System.in);
 	private Club club;
@@ -60,20 +61,21 @@ public class Menu{
 		System.out.println("(5) Asignar entrenador principal a un equipo");
 		System.out.println("(6) Agregar asistente tecnico a un equipo");
 		System.out.println("(7) Agregar un jugador a un equipo");
-		System.out.println("(8) Eliminar un asistente tecnico de un equipo");
-		System.out.println("(9) Eliminar un jugador de un equipo");
-		System.out.println("(10) Asignar un camerino a un equipo");
-		System.out.println("(11) Agregar una alineacion a un equipo");
-		System.out.println("(12) Listar la informacion de un equipo");
-		System.out.println("(13) Imprimir las alineaciones de un equipo");
-		System.out.println("(14) Listar Empleados");
-		System.out.println("(15) Listar Jugadores");
-		System.out.println("(16) Listar Entrenadores Principales");
-		System.out.println("(17) Listar Asistentes Tecnicos");
-		System.out.println("(18) Imprimir la informacion del club");
-		System.out.println("(19) Imprimir los camerinos");
-		System.out.println("(20) Imprimir el sector de oficinas");
-		System.out.println("(21) Salir");
+		System.out.println("(8 Eliminar el entrenador principal de un equipo)");
+		System.out.println("(9) Eliminar un asistente tecnico de un equipo");
+		System.out.println("(10) Eliminar un jugador de un equipo");
+		System.out.println("(11) Asignar un camerino a un equipo");
+		System.out.println("(12) Agregar una alineacion a un equipo");
+		System.out.println("(13) Listar la informacion de un equipo");
+		System.out.println("(14) Imprimir las alineaciones de un equipo");
+		System.out.println("(15) Listar Empleados");
+		System.out.println("(16) Listar Jugadores");
+		System.out.println("(17) Listar Entrenadores Principales");
+		System.out.println("(18) Listar Asistentes Tecnicos");
+		System.out.println("(19) Imprimir la informacion del club");
+		System.out.println("(20) Imprimir los camerinos");
+		System.out.println("(21) Imprimir el sector de oficinas");
+		System.out.println("(22) Salir");
 		System.out.println("**************MENU**************");
 	}
 	/**
@@ -294,6 +296,19 @@ public class Menu{
 			return "Se agrego correctamente el jugador al equipo";
 		}else return "No se pudo agregar el jugador al equipo";
 	}
+	public String teamRemoveHeadCoach(){
+		System.out.println("Ingrese el nombre del equipo:");
+		String name = sc.nextLine();
+		System.out.println("Ingrse el nombre del entrenador principal:");
+		String coachName = sc.nextLine();
+		System.out.println("Ingrese el identificador del entrenador principal:");
+		int identifier = sc.nextInt();
+		sc.nextLine();
+		boolean removed = club.removeTeamHeadCoach(name, coachName, identifier);
+		if(removed){
+			return "Se elimino el entrenador principal del equipo";
+		}else return "No se pudo eliminar el entrenador principal del equipo";
+	}
 	/**
 	* Remove a technical assistant from a team
 	* <b> pre: </b>
@@ -412,6 +427,9 @@ public class Menu{
 				break;
 			case TEAM_ADD_PLAYER:
 				System.out.println(teamAddPlayer());
+				break;
+			case TEAM_REMOVE_HEAD_COACH:
+				System.out.println(teamRemoveHeadCoach());
 				break;
 			case TEAM_REMOVE_TECHNICAL_ASSISTANT:
 				System.out.println(teamRemoveTechnicalAssistant());
