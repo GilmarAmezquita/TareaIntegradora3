@@ -84,7 +84,7 @@ public class Team{
 	* <b> post: </b>
 	*			1. Returns true if the technical assistant was added <br>
 	*			2. Returns false if the technical assistant couldn't be added
-	* @param technicalAssistant
+	* @param technicalAssistant The technical assistant to be added
 	* @return added
 	*/
 	public boolean addTechnicalAssistant(TechnicalAssistant technicalAssistant){
@@ -106,7 +106,7 @@ public class Team{
 	* <b> post: </b>
 	*			1. Returns true if the player was added <br>
 	*			2. Returns false if the player couldn't be added
-	* @param player
+	* @param player The player to be added
 	* @return added
 	*/
 	public boolean addPlayer(Player player){
@@ -188,13 +188,16 @@ public class Team{
 	}
 	/**
 	* Add a line-up to the team
-	* <b> pre: </b> The tactic number can only be between 1 and 4<br>
+	* <b> pre: </b> 
+	*			1. The tactic number can only be between 1 and 4<br>
+	*			2. The formation components must sume 10
 	* <b> post: </b>
 	*			1. Returns true if the line-up was added <br>
 	*			2. Returns false if the line-up couldn't be added
 	* @param date Line-up date
-	* @param numTactic 
+	* @param numTactic Tactic number option
 	* @param formation Line-up formation
+	* @return added
 	*/
 	public boolean addLineUp(String date, int numTactic, String formation){
 		boolean added = false;

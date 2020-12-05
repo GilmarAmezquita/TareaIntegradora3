@@ -294,6 +294,12 @@ public class Menu{
 			return "Se agrego correctamente el jugador al equipo";
 		}else return "No se pudo agregar el jugador al equipo";
 	}
+	/**
+	* Remove a head coach from a team
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @return String
+	*/
 	public String teamRemoveHeadCoach(){
 		System.out.println("Ingrese el nombre del equipo:");
 		String name = sc.nextLine();
@@ -349,6 +355,12 @@ public class Menu{
 			return "Se elimino el jugador del equipo";
 		}else return "No se pudo eliminar el jugador del equipo";
 	}
+	/**
+	* Assign a dressing room to a team
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @return String
+	*/
 	public String assignDressingRoomToTeam(){
 		System.out.println("Ingrese el numero de camerino al que asignara un equipo:");
 		System.out.println("(1) Camerino 1(7x6)\n(2) Camerino 2(7x7)");
@@ -362,6 +374,12 @@ public class Menu{
 			return "Se asigno correctamente el camerino";
 		}else return "No se pudo asignar el camerino";
 	}
+	/**
+	* Add a line-up to a team
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @return String
+	*/
 	public String addLineUpToTeam(){
 		System.out.println("Ingrese el nombre del equipo:");
 		String name = sc.nextLine();
@@ -391,6 +409,12 @@ public class Menu{
 		String content = club.getTeamInfo(name);
 		return content;
 	}
+	/**
+	* Get the line-ups of a team
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @return content
+	*/
 	public String getTeamLineUps(){
 		System.out.println("Ingrese el nombre del equipo:");
 		String name = sc.nextLine();

@@ -20,7 +20,7 @@ public class TechnicalAssistant extends Coach{
 	* @param salary Technical's salaray
 	* @param state Technical's state
 	* @param yearsExperience Technical's years of experience
-	* @param player If the technical was a player or not
+	* @param wasPlayer If the technical was a player or not
 	* @param numExpertises Technical's expertises
 	*/
 	public TechnicalAssistant(String name, int identifier, int salary, boolean state, int yearsExperience, boolean wasPlayer, int[] numExpertises){
@@ -35,14 +35,18 @@ public class TechnicalAssistant extends Coach{
 	* <b> post: </b>
 	*			1. Returns true if the technical assistant was a plyer <br>
 	*			2. Returns false if the technical assistant wasn't a player
+	* @return wasPlayer
 	*/
 	public boolean getWasPlayer(){
 		return wasPlayer;
 	}
 	/**
 	* Set if the technical assistant was a player or not
-	* <b> pre: </b> <br>
+	* <b> pre: </b> 
+	*			1. wasPlayer is true if the technical assistant was a player <br>
+	*			2. wasPlayer is false if the technical assistant wasn't a player
 	* <b> post: </b> Change if the technical assistant was or not a player
+	* @param wasPlayer If the technical assistant was or not a player
 	*/
 	public void setWasPlayer(boolean wasPlayer){
 		this.wasPlayer = wasPlayer;

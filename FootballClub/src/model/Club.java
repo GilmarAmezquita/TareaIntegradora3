@@ -106,8 +106,8 @@ public class Club{
 	* @param state Employee's state
 	* @param tShirtNumber Employee's t-shirt number
 	* @param goals Employee's goals in the football club
-	* @param avarageQualification
-	* @param numPosition
+	* @param avarageQualification Employee's avarage qualification
+	* @param numPosition Employee's number position option
 	* @return added
 	*/
 	public boolean addEmployee(String name, int identifier, int salary, boolean state, int tShirtNumber, int goals, double avarageQualification,int numPosition){
@@ -170,7 +170,7 @@ public class Club{
 	* @param salary Employee's salary
 	* @param state Employee's state
 	* @param yearsExperience Employee's years of experience
-	* @param wasPlayer
+	* @param wasPlayer Employee was a player or not 
 	* @param numExpertises Employee's expertises
 	* @return added
 	*/
@@ -564,12 +564,17 @@ public class Club{
 	}
 	/**
 	* Add a line-up to a team
-	* <b> pre: </b> The tactic number can only be between 1 and 4<br>
+	* <b> pre: </b> 
+	*			1. The tactic number can only be between 1 and 4<br>
+	*			2. The formation components must sume 10
 	* <b> post: </b>
+	*			1. Returns true if the line-up was added <br>
+	*			2. Returns false if the line-up couldn't be added
 	* @param name Team's name
 	* @param date Date to be used the line-up
-	* @param tacticNum 
-	* @param formation
+	* @param tacticNum Tactic number option
+	* @param formation Formation to be used
+	* @return added
 	*/
 	public boolean addLineUpToTeam(String name, String date, int tacticNum, String formation){
 		boolean added = false;

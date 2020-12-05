@@ -49,7 +49,7 @@ public class Player extends Employee{
 	* Replace the player's t-shirt number
 	* <b> pre: </b> The new t-shirt number must be unique<br>
 	* <b> post: </b>
-	* @param tShirtNumber
+	* @param tShirtNumber Player's t-shirt number
 	*/
 	public void setTShirtNumber(int tShirtNumber){
 		this.tShirtNumber = tShirtNumber;
@@ -86,7 +86,7 @@ public class Player extends Employee{
 	* Replace the player's avarage qualification
 	* <b> pre: </b> <br>
 	* <b> post: </b>
-	* @avarageQualification new avarage qualification
+	* @param avarageQualification new avarage qualification
 	*/
 	public void setAvarageQualification(double avarageQualification){
 		this.avarageQualification = avarageQualification;
