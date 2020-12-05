@@ -113,7 +113,7 @@ public class Team{
 		boolean finded = findPlayer(player.getName());
 		boolean added = false;
 		if(!finded){
-			for(int i = 0; i<MAX_PLAYERS; i++){
+			for(int i = 0; i<MAX_PLAYERS && !added; i++){
 				if(players[i] == null){
 					players[i] = player;
 					added = true;

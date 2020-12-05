@@ -266,6 +266,7 @@ public class Club{
 	* @param dressingRoom Dressing room number
 	* @return added
 	*/
+	//ASIGNA TODO EN NULL
 	public boolean assignDressingRoom(String name, int dressingRoom){
 		boolean finded = false;
 		int i = 0;
@@ -276,18 +277,18 @@ public class Club{
 			}
 		}
 		boolean added = false;
-		if(finded && dressingRoom==1){
-			for(int j = 0; j<teams[i].players.length; j++){
-				for(int k = 0; k<ROOM_SIZE_2; k++){
-					for(int l = 0; l<ROOM_SIZE_1; l++){
-						dressingRoom1[k][l] = null;
-					}
+		if(finded && dressingRoom == 1){
+			for(int j = 0; j<ROOM_SIZE_2; j++){
+				for(int k = 0; k<ROOM_SIZE_1; k++){
+					dressingRoom1[j][k] = null;
 				}
+			}
+			for(int j = 0; j<teams[i].players.length; j++){
 				if(teams[i].players[j] != null){
 					added = false;
 					for(int k = 0; k<ROOM_SIZE_2 && !added; k++){
 						for(int l = 0; l<ROOM_SIZE_1 && !added; l++){
-							if((k+l)%2==0 && dressingRoom1[k][l] == null){
+							if((k+l)%2 == 0 && dressingRoom1[k][l] == null){
 								dressingRoom1[k][l] = teams[i].players[j];
 								added = true;
 							}
@@ -296,17 +297,18 @@ public class Club{
 				}
 			}
 		}else if(finded && dressingRoom==2){
-			for(int j = 0; j<teams[i].players.length; j++){
+			for(int j = 0; j<ROOM_SIZE_2; j++){
 				for(int k = 0; k<ROOM_SIZE_2; k++){
-					for(int l = 0; l<ROOM_SIZE_2; l++){
-						dressingRoom2[k][l] = null;
-					}
+					dressingRoom2[j][k] = null;
 				}
+			}
+			added = false;
+			for(int j = 0; j<teams[i].players.length; j++){
 				if(teams[i].players[j] != null){
 					added = false;
 					for(int k = 0; k<ROOM_SIZE_2 && !added; k++){
 						for(int l = 0; l<ROOM_SIZE_2 && !added; l++){
-							if((k+l)%2==0 && dressingRoom2[k][l] == null){
+							if((k+l)%2 == 0 && dressingRoom2[k][l] == null){
 								dressingRoom2[k][l] = teams[i].players[j];
 								added = true;
 							}
@@ -438,7 +440,7 @@ public class Club{
 				for(int j = 0; j<employees.size() && !added; j++){
 					if(employees.get(j).getName().equals(coachName) && employees.get(j).getIdentifier() == identifier){
 						if(employees.get(j) instanceof HeadCoach){
-							HeadCoach headCoach = (HeadCoach) employees.get(i);
+							HeadCoach headCoach = (HeadCoach) employees.get(j);
 							teams[i].addHeadCoach(headCoach);
 							added = true;
 						}
@@ -463,7 +465,7 @@ public class Club{
 		boolean added = false;
 		for(int i = 0; i<TEAMS && !added; i++){
 			if(teams[i].getName().equals(name)){
-				for(int j = 0; j<employees.size() && !added; i++){
+				for(int j = 0; j<employees.size() && !added; j++){
 					if(employees.get(j).getName().equals(technicalName) && employees.get(j).getIdentifier() == identifier){
 						if(employees.get(j) instanceof TechnicalAssistant){
 							TechnicalAssistant technicalAssistant = (TechnicalAssistant) employees.get(j);
@@ -488,9 +490,9 @@ public class Club{
 	*/
 	public boolean addTeamPlayer(String name, String playerName, int identifier){
 		boolean added = false;
-		for(int i = 0; i<TEAMS; i++){
+		for(int i = 0; i<TEAMS && !added; i++){
 			if(teams[i].getName().equals(name)){
-				for(int j = 0; j<employees.size(); j++){
+				for(int j = 0; j<employees.size() && !added; j++){
 					if(employees.get(j).getName().equals(playerName) && employees.get(j).getIdentifier() == identifier){
 						if(employees.get(j) instanceof Player){
 							Player player = (Player) employees.get(j);

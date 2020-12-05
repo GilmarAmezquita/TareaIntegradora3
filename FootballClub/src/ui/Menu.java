@@ -257,9 +257,9 @@ public class Menu{
 	public void addToTeamReadEmployeeData(){
 		System.out.println("Ingrese el nombre del equipo:");
 		String name = sc.nextLine();
-		System.out.println("Ingrese el nombre del entrenador principal:");
+		System.out.println("Ingrese el nombre del empleado:");
 		String employeeName = sc.nextLine();
-		System.out.println("Ingrese el identificador del entrenador:");
+		System.out.println("Ingrese el identificador del empleado:");
 		int identifier = sc.nextInt();
 		sc.nextLine();
 		showAddToTeamMenu();
@@ -341,6 +341,9 @@ public class Menu{
 				break;
 			case EMPLOYEE_TECHNICAL_ASSISTANT:
 				System.out.println(teamAddTechnicalAssistant(name, employeeName, identifier));
+				break;
+			default:
+				System.out.println("Tipo de empleado inexistente.");
 		}
 	}
 	/**
@@ -351,9 +354,9 @@ public class Menu{
 	public void removeFromTeamReadEmployeeData(){
 		System.out.println("Ingrese el nombre del equipo:");
 		String name = sc.nextLine();
-		System.out.println("Ingrse el nombre del entrenador principal:");
+		System.out.println("Ingrse el nombre del empleado:");
 		String employeeName = sc.nextLine();
-		System.out.println("Ingrese el identificador del entrenador principal:");
+		System.out.println("Ingrese el identificador del empleado:");
 		int identifier = sc.nextInt();
 		sc.nextLine();
 		showRemoveFromTeamMenu();
@@ -435,6 +438,9 @@ public class Menu{
 				break;
 			case EMPLOYEE_TECHNICAL_ASSISTANT:
 				System.out.println(teamRemoveTechnicalAssistant(name, employeeName, identifier));
+				break;
+			default:
+				System.out.println("Tipo de empleado inexistente.");
 		}
 	}
 	/**

@@ -117,7 +117,7 @@ public class LineUp{
 	public String getInfo(){
 		String content = "************LINE UP************\n";
 		content += "** Date: "+getDate()+"\n";
-		content += "** Tactic: "+getTactic()+"";;
+		content += "** Tactic: "+getTactic()+"\n";
 		content += "** Formation: "+getFormation()+"\n";
 		for(int i = 0; i<LINE_UP_SIZE_1; i++){
 			for(int j = 0; j<LINE_UP_SIZE_2; j++){
