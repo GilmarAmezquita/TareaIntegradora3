@@ -375,6 +375,9 @@ public class Menu{
 	* Remove a player from a team
 	* <b> pre: </b> <br>
 	* <b> post: </b>
+	* @param name Team's name
+	* @param employeeName Employee's name
+	* @param identifier Employee's identifier
 	* @return String
 	*/
 	public String teamRemovePlayer(String name, String employeeName, int identifier){
@@ -387,6 +390,9 @@ public class Menu{
 	* Remove a head coach from a team
 	* <b> pre: </b> <br>
 	* <b> post: </b>
+	* @param name Team's name
+	* @param employeeName Employee's name
+	* @param identifier Employee's identifier
 	* @return String
 	*/
 	public String teamRemoveHeadCoach(String name, String employeeName, int identifier){
@@ -399,6 +405,9 @@ public class Menu{
 	* Remove a technical assistant from a team
 	* <b> pre: </b> <br>
 	* <b> post: </b>
+	* @param name Team's name
+	* @param employeeName Employee's name
+	* @param identifier Employee's identifier
 	* @return String
 	*/
 	public String teamRemoveTechnicalAssistant(String name, String employeeName, int identifier){
