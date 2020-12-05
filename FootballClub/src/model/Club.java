@@ -613,6 +613,10 @@ public class Club{
 		content += "** Nit: "+getNit()+"\n";
 		content += "** Fundation Date: "+getFundationDate()+"\n";
 		content += "** Employees: "+employees.size()+"\n";
+		content += "** Teams:";
+		for(int i = 0; i<TEAMS; i++){
+			content += "\n** "+teams[i].getName();
+		}
 		return content;
 	}
 	/**

@@ -2,30 +2,27 @@ package ui;
 import model.*;
 import java.util.Scanner;
 public class Menu{
-	private final static int CONTRACT_PLAYER = 1;
-	private final static int CONTRACT_HEAD_COACH = 2;
-	private final static int CONTRACT_TECHNICAL_ASSISTANT = 3;
+	private final static int EMPLOYEE_PLAYER = 1;
+	private final static int EMPLOYEE_HEAD_COACH = 2;
+	private final static int EMPLOYEE_TECHNICAL_ASSISTANT = 3;
 	
 	private final static int CONTRACT_EMPLOYEE = 1;
 	private final static int THROW_EMPLOYEE = 2;
-	private final static int TEAM_ADD_HEAD_COACH = 3;
-	private final static int TEAM_ADD_TECHNICAL_ASSISTANT = 4;
-	private final static int TEAM_ADD_PLAYER = 5;
-	private final static int TEAM_REMOVE_HEAD_COACH = 6;
-	private final static int TEAM_REMOVE_TECHNICAL_ASSISTANT = 7;
-	private final static int TEAM_REMOVE_PLAYER = 8;
-	private final static int ASSIGN_TEAM_DRESSING_ROOM = 9;
-	private final static int TEAM_ADD_LINE_UP = 10;
-	private final static int PRINT_TEAM_INFO = 11;
-	private final static int PRINT_TEAM_LINE_UPS = 12;
-	private final static int PRINT_EMPLOYEES = 13;
-	private final static int PRINT_PLAYERS = 14;
-	private final static int PRINT_HEAD_COACHS = 15;
-	private final static int PRINT_TECHNICAL_ASSISTANTS = 16;
-	private final static int PRINT_CLUB_INFO = 17;
-	private final static int PRINT_DRESSING_ROOMS = 18;
-	private final static int PRINT_OFFICE_SECTOR = 19;
-	private final static int EXIT = 20;
+	private final static int TEAM_ADD_EMPLOYEE = 3;
+	private final static int TEAM_REMOVE_EMPLOYEE = 4;
+	
+	private final static int ASSIGN_TEAM_DRESSING_ROOM = 5;
+	private final static int TEAM_ADD_LINE_UP = 6;
+	private final static int PRINT_TEAM_INFO = 7;
+	private final static int PRINT_TEAM_LINE_UPS = 8;
+	private final static int PRINT_EMPLOYEES = 9;
+	private final static int PRINT_PLAYERS = 10;
+	private final static int PRINT_HEAD_COACHS = 11;
+	private final static int PRINT_TECHNICAL_ASSISTANTS = 12;
+	private final static int PRINT_CLUB_INFO = 13;
+	private final static int PRINT_DRESSING_ROOMS = 14;
+	private final static int PRINT_OFFICE_SECTOR = 15;
+	private final static int EXIT = 16;
 	private static Scanner sc = new Scanner(System.in);
 	private Club club;
 	public Menu(){
@@ -56,24 +53,20 @@ public class Menu{
 		System.out.println("\n***********************MENU***********************");
 		System.out.println("(1) Contratar un empleado");
 		System.out.println("(2) Despedir un empleado");
-		System.out.println("(3) Asignar entrenador principal a un equipo");
-		System.out.println("(4) Agregar asistente tecnico a un equipo");
-		System.out.println("(5) Agregar un jugador a un equipo");
-		System.out.println("(6) Eliminar el entrenador principal de un equipo)");
-		System.out.println("(7) Eliminar un asistente tecnico de un equipo");
-		System.out.println("(8) Eliminar un jugador de un equipo");
-		System.out.println("(9) Asignar un camerino a un equipo");
-		System.out.println("(10) Agregar una alineacion a un equipo");
-		System.out.println("(11) Listar la informacion de un equipo");
-		System.out.println("(12) Imprimir las alineaciones de un equipo");
-		System.out.println("(13) Listar Empleados");
-		System.out.println("(14) Listar Jugadores");
-		System.out.println("(15) Listar Entrenadores Principales");
-		System.out.println("(16) Listar Asistentes Tecnicos");
-		System.out.println("(17) Imprimir la informacion del club");
-		System.out.println("(18) Imprimir los camerinos");
-		System.out.println("(19) Imprimir el sector de oficinas");
-		System.out.println("(20) Salir");
+		System.out.println("(3) Agregar un empleado a un equipo");
+		System.out.println("(4) Eliminar un empleado de un equipo");
+		System.out.println("(5) Asignar un camerino a un equipo");
+		System.out.println("(6) Agregar una alineacion a un equipo");
+		System.out.println("(7) Listar la informacion de un equipo");
+		System.out.println("(8) Imprimir las alineaciones de un equipo");
+		System.out.println("(9) Listar Empleados");
+		System.out.println("(10) Listar Jugadores");
+		System.out.println("(11) Listar Entrenadores Principales");
+		System.out.println("(12) Listar Asistentes Tecnicos");
+		System.out.println("(13) Imprimir la informacion del club");
+		System.out.println("(14) Imprimir los camerinos");
+		System.out.println("(15) Imprimir el sector de oficinas");
+		System.out.println("(16) Salir");
 		System.out.println("***********************MENU***********************");
 	}
 	/**
@@ -226,13 +219,13 @@ public class Menu{
 	*/
 	public void doOperationContract(int choice, String name, int identifier, int salary, boolean state){
 		switch(choice){
-			case CONTRACT_PLAYER:
+			case EMPLOYEE_PLAYER:
 				System.out.println(readPlayer(name, identifier, salary, state));
 				break;
-			case CONTRACT_HEAD_COACH:
+			case EMPLOYEE_HEAD_COACH:
 				System.out.println(readHeadCoach(name, identifier, salary, state));
 				break;
-			case CONTRACT_TECHNICAL_ASSISTANT:
+			case EMPLOYEE_TECHNICAL_ASSISTANT:
 				System.out.println(readTechnicalAssistant(name, identifier, salary, state));
 				break;
 			default:
@@ -257,67 +250,138 @@ public class Menu{
 		}else return "No se pudo despedir al empleado";
 	}
 	/**
-	* Add the head coach to a team
-	* <b> pre: </b>
-	*			1. The team must exist<br>
-	*			2. The coach's name and identifier must match
+	* Read the employee data
+	* <b> pre: </b> <br>
 	* <b> post: </b>
-	* @return String
 	*/
-	public String teamAddHeadCoach(){
+	public void addToTeamReadEmployeeData(){
 		System.out.println("Ingrese el nombre del equipo:");
 		String name = sc.nextLine();
 		System.out.println("Ingrese el nombre del entrenador principal:");
-		String coachName = sc.nextLine();
+		String employeeName = sc.nextLine();
 		System.out.println("Ingrese el identificador del entrenador:");
 		int identifier = sc.nextInt();
 		sc.nextLine();
-		boolean added = club.addTeamHeadCoach(name, coachName, identifier);
+		showAddToTeamMenu();
+		int choice = readOption();
+		doOperationAddToTeam(choice, name, employeeName, identifier);
+	}
+	/**
+	* Show the add to team menu options
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	*/
+	public void showAddToTeamMenu(){
+		System.out.println("******************TIPO DE EMPLEADO*****************");
+		System.out.println("(1) Jugador");
+		System.out.println("(2) Entrenador Principal");
+		System.out.println("(3) Asistente tecnico");
+	}
+	/**
+	* Add a player to a team
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @param name Team's name
+	* @param employeeName Employee's name
+	* @param identifier Employee's identifier
+	* @return String
+	*/
+	public String teamAddPlayer(String name, String employeeName, int identifier){
+		boolean added = club.addTeamPlayer(name, employeeName, identifier);
+		if(added){
+			return "Se agrego correctamente el jugador al equipo";
+		}else return "No se pudo agregar el jugador al equipo";
+	}
+	/**
+	* Add the head coach to a team
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @param name Team's name
+	* @param employeeName Employee's name
+	* @param identifier Employee's identifier
+	* @return String
+	*/
+	public String teamAddHeadCoach(String name, String employeeName, int identifier){
+		boolean added = club.addTeamHeadCoach(name, employeeName, identifier);
 		if(added){
 			return "Se agrego correctamente el entrenador al equipo";
 		}else return "No se pudo agregar el entrenador al equipo";
 	}
 	/**
 	* Add a technical assistant to a team
-	* <b> pre: </b>
-	*			1. The team must exist<br>
-	*			2. The technical's name and identifier must match
+	* <b> pre: </b> <br>
 	* <b> post: </b>
+	* @param name Team's name
+	* @param employeeName Employee's name
+	* @param identifier Employee's identifier
 	* @return String
 	*/
-	public String teamAddTechnicalAssistant(){
-		System.out.println("Ingrese el nombre del equipo:");
-		String name = sc.nextLine();
-		System.out.println("Ingrese el nombre del asistente tecnico:");
-		String technicalName = sc.nextLine();
-		System.out.println("Ingrese el identificador del asistente tecnico:");
-		int identifier = sc.nextInt();
-		sc.nextLine();
-		boolean added = club.addTeamTechnicalAssistant(name, technicalName, identifier);
+	public String teamAddTechnicalAssistant(String name, String employeeName, int identifier){
+		boolean added = club.addTeamTechnicalAssistant(name, employeeName, identifier);
 		if(added){
 			return "Se agrego correctamente el asistente tecnico al equipo";
 		}else return "No se pudo agregar el asistente tecnico al equipo";
 	}
 	/**
-	* Add a player to a team
-	* <b> pre: </b>
-	*			1. The team must exist<br>
-	*			2. The player's name and identifier must match
+	* Do an action depending on the choice
+	* <b> pre: </b> <br>
+	* <b> post: </b> 
+	* @param choice User choice
+	* @param name Team's name
+	* @param employeeName Employee's name
+	* @param identifier Employee's identifier
+	*/
+	public void doOperationAddToTeam(int choice, String name, String employeeName, int identifier){
+		switch(choice){
+			case EMPLOYEE_PLAYER:
+				System.out.println(teamAddPlayer(name, employeeName, identifier));
+				break;
+			case EMPLOYEE_HEAD_COACH:
+				System.out.println(teamAddHeadCoach(name, employeeName, identifier));
+				break;
+			case EMPLOYEE_TECHNICAL_ASSISTANT:
+				System.out.println(teamAddTechnicalAssistant(name, employeeName, identifier));
+		}
+	}
+	/**
+	* Read the employee data
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	*/
+	public void removeFromTeamReadEmployeeData(){
+		System.out.println("Ingrese el nombre del equipo:");
+		String name = sc.nextLine();
+		System.out.println("Ingrse el nombre del entrenador principal:");
+		String employeeName = sc.nextLine();
+		System.out.println("Ingrese el identificador del entrenador principal:");
+		int identifier = sc.nextInt();
+		sc.nextLine();
+		showRemoveFromTeamMenu();
+		int choice = readOption();
+		doOperationRemoveFromTeam(choice, name, employeeName, identifier);
+	}
+	/**
+	* Show the remove from team menu options
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	*/
+	public void showRemoveFromTeamMenu(){
+		System.out.println("******************TIPO DE EMPLEADO*****************");
+		System.out.println("(1) Jugador");
+		System.out.println("(2) Entrenador principal");
+		System.out.println("(3) Asistente tecnico");
+	}
+	/**
+	* Remove a player from a team
+	* <b> pre: </b> <br>
 	* <b> post: </b>
 	* @return String
 	*/
-	public String teamAddPlayer(){
-		System.out.println("Ingrese el nombre del equipo:");
-		String name = sc.nextLine();
-		System.out.println("Ingrese el nombre del jugador:");
-		String playerName = sc.nextLine();
-		System.out.println("Ingrese el identificador del jugador:");
-		int identifier = sc.nextInt();
-		sc.nextLine();
-		boolean added = club.addTeamPlayer(name, playerName, identifier);
-		if(added){
-			return "Se agrego correctamente el jugador al equipo";
-		}else return "No se pudo agregar el jugador al equipo";
+	public String teamRemovePlayer(String name, String employeeName, int identifier){
+		boolean removed = club.removeTeamPlayer(name, employeeName, identifier);
+		if(removed){
+			return "Se elimino el jugador del equipo";
+		}else return "No se pudo eliminar el jugador del equipo";
 	}
 	/**
 	* Remove a head coach from a team
@@ -325,60 +389,44 @@ public class Menu{
 	* <b> post: </b>
 	* @return String
 	*/
-	public String teamRemoveHeadCoach(){
-		System.out.println("Ingrese el nombre del equipo:");
-		String name = sc.nextLine();
-		System.out.println("Ingrse el nombre del entrenador principal:");
-		String coachName = sc.nextLine();
-		System.out.println("Ingrese el identificador del entrenador principal:");
-		int identifier = sc.nextInt();
-		sc.nextLine();
-		boolean removed = club.removeTeamHeadCoach(name, coachName, identifier);
+	public String teamRemoveHeadCoach(String name, String employeeName, int identifier){
+		boolean removed = club.removeTeamHeadCoach(name, employeeName, identifier);
 		if(removed){
 			return "Se elimino el entrenador principal del equipo";
 		}else return "No se pudo eliminar el entrenador principal del equipo";
 	}
 	/**
 	* Remove a technical assistant from a team
-	* <b> pre: </b>
-	*			1. The team must exist<br>
-	*			2. The technical's name and identifier must match
+	* <b> pre: </b> <br>
 	* <b> post: </b>
 	* @return String
 	*/
-	public String teamRemoveTechnicalAssistant(){
-		System.out.println("Ingrese el nombre del equipo:");
-		String name = sc.nextLine();
-		System.out.println("Ingrese el nombre del asistente tecnico:");
-		String technicalName = sc.nextLine();
-		System.out.println("Ingrese el identificador del asistente tecnico:");
-		int identifier = sc.nextInt();
-		sc.nextLine();
-		boolean removed = club.removeTeamTechnicalAssistant(name, technicalName, identifier);
+	public String teamRemoveTechnicalAssistant(String name, String employeeName, int identifier){
+		boolean removed = club.removeTeamTechnicalAssistant(name, employeeName, identifier);
 		if(removed){
 			return "Se elimino el asistente tecnico del equipo";
 		}else return "No se pudo eliminar el asistente tenico del equipo";
 	}
 	/**
-	* Remove a player from a team
-	* <b> pre: </b>
-	*			1. The team must exist<br>
-	*			2. The player's name and identifier must match
-	* <b> post: </b>
-	* @return String
+	* Do an action depending on the choice
+	* <b> pre: </b> <br>
+	* <b> post: </b> 
+	* @param choice User choice
+	* @param name Team's name
+	* @param employeeName Employee's name
+	* @param identifier Employee's identifier
 	*/
-	public String teamRemovePlayer(){
-		System.out.println("Ingrese el nombre del equipo:");
-		String name = sc.nextLine();
-		System.out.println("Ingrese el nombre del jugador:");
-		String playerName = sc.nextLine();
-		System.out.println("Ingrese el identificador del jugador:");
-		int identifier = sc.nextInt();
-		sc.nextLine();
-		boolean removed = club.removeTeamPlayer(name, playerName, identifier);
-		if(removed){
-			return "Se elimino el jugador del equipo";
-		}else return "No se pudo eliminar el jugador del equipo";
+	public void doOperationRemoveFromTeam(int choice, String name, String employeeName, int identifier){
+		switch(choice){
+			case EMPLOYEE_PLAYER:
+				System.out.println(teamRemovePlayer(name, employeeName, identifier));
+				break;
+			case EMPLOYEE_HEAD_COACH:
+				System.out.println(teamRemoveHeadCoach(name, employeeName, identifier));
+				break;
+			case EMPLOYEE_TECHNICAL_ASSISTANT:
+				System.out.println(teamRemoveTechnicalAssistant(name, employeeName, identifier));
+		}
 	}
 	/**
 	* Assign a dressing room to a team
@@ -460,23 +508,11 @@ public class Menu{
 			case THROW_EMPLOYEE:
 				System.out.println(throwEmployee());
 				break;
-			case TEAM_ADD_HEAD_COACH:
-				System.out.println(teamAddHeadCoach());
+			case TEAM_ADD_EMPLOYEE:
+				addToTeamReadEmployeeData();
 				break;
-			case TEAM_ADD_TECHNICAL_ASSISTANT:
-				System.out.println(teamAddTechnicalAssistant());
-				break;
-			case TEAM_ADD_PLAYER:
-				System.out.println(teamAddPlayer());
-				break;
-			case TEAM_REMOVE_HEAD_COACH:
-				System.out.println(teamRemoveHeadCoach());
-				break;
-			case TEAM_REMOVE_TECHNICAL_ASSISTANT:
-				System.out.println(teamRemoveTechnicalAssistant());
-				break;
-			case TEAM_REMOVE_PLAYER:
-				System.out.println(teamRemovePlayer());
+			case TEAM_REMOVE_EMPLOYEE:
+				removeFromTeamReadEmployeeData();
 				break;
 			case ASSIGN_TEAM_DRESSING_ROOM:
 				System.out.println(assignDressingRoomToTeam());
