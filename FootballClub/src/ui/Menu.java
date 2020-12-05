@@ -2,28 +2,30 @@ package ui;
 import model.*;
 import java.util.Scanner;
 public class Menu{
-	private final static int ADD_PLAYER = 1;
-	private final static int ADD_HEAD_COACH = 2;
-	private final static int ADD_TECHNICAL_ASSISTANT = 3;
-	private final static int THROW_EMPLOYEE = 4;
-	private final static int TEAM_ADD_HEAD_COACH = 5;
-	private final static int TEAM_ADD_TECHNICAL_ASSISTANT = 6;
-	private final static int TEAM_ADD_PLAYER = 7;
-	private final static int TEAM_REMOVE_HEAD_COACH = 8;
-	private final static int TEAM_REMOVE_TECHNICAL_ASSISTANT = 9;
-	private final static int TEAM_REMOVE_PLAYER = 10;
-	private final static int ASSIGN_TEAM_DRESSING_ROOM = 11;
-	private final static int TEAM_ADD_LINE_UP = 12;
-	private final static int PRINT_TEAM_INFO = 13;
-	private final static int PRINT_TEAM_LINE_UPS = 14;
-	private final static int PRINT_EMPLOYEES = 15;
-	private final static int PRINT_PLAYERS = 16;
-	private final static int PRINT_HEAD_COACHS = 17;
-	private final static int PRINT_TECHNICAL_ASSISTANTS = 18;
-	private final static int PRINT_CLUB_INFO = 19;
-	private final static int PRINT_DRESSING_ROOMS = 20;
-	private final static int PRINT_OFFICE_SECTOR = 21;
-	private final static int EXIT = 22;
+	private final static int CONTRACT_PLAYER = 1;
+	private final static int CONTRACT_HEAD_COACH = 2;
+	private final static int CONTRACT_TECHNICAL_ASSISTANT = 3;
+	
+	private final static int CONTRACT_EMPLOYEE = 1;
+	private final static int THROW_EMPLOYEE = 2;
+	private final static int TEAM_ADD_HEAD_COACH = 3;
+	private final static int TEAM_ADD_TECHNICAL_ASSISTANT = 4;
+	private final static int TEAM_ADD_PLAYER = 5;
+	private final static int TEAM_REMOVE_HEAD_COACH = 6;
+	private final static int TEAM_REMOVE_TECHNICAL_ASSISTANT = 7;
+	private final static int TEAM_REMOVE_PLAYER = 8;
+	private final static int ASSIGN_TEAM_DRESSING_ROOM = 9;
+	private final static int TEAM_ADD_LINE_UP = 10;
+	private final static int PRINT_TEAM_INFO = 11;
+	private final static int PRINT_TEAM_LINE_UPS = 12;
+	private final static int PRINT_EMPLOYEES = 13;
+	private final static int PRINT_PLAYERS = 14;
+	private final static int PRINT_HEAD_COACHS = 15;
+	private final static int PRINT_TECHNICAL_ASSISTANTS = 16;
+	private final static int PRINT_CLUB_INFO = 17;
+	private final static int PRINT_DRESSING_ROOMS = 18;
+	private final static int PRINT_OFFICE_SECTOR = 19;
+	private final static int EXIT = 20;
 	private static Scanner sc = new Scanner(System.in);
 	private Club club;
 	public Menu(){
@@ -51,30 +53,28 @@ public class Menu{
 	* <b> post: </b>
 	*/
 	public void showMenu(){
-		System.out.println("\n**************MENU**************");
-		System.out.println("(1) Contratar un jugador");
-		System.out.println("(2) Contratar un entrenador principal");
-		System.out.println("(3) Contratar un asistente tecnico");
-		System.out.println("(4) Despedir un empleado");
-		System.out.println("(5) Asignar entrenador principal a un equipo");
-		System.out.println("(6) Agregar asistente tecnico a un equipo");
-		System.out.println("(7) Agregar un jugador a un equipo");
-		System.out.println("(8 Eliminar el entrenador principal de un equipo)");
-		System.out.println("(9) Eliminar un asistente tecnico de un equipo");
-		System.out.println("(10) Eliminar un jugador de un equipo");
-		System.out.println("(11) Asignar un camerino a un equipo");
-		System.out.println("(12) Agregar una alineacion a un equipo");
-		System.out.println("(13) Listar la informacion de un equipo");
-		System.out.println("(14) Imprimir las alineaciones de un equipo");
-		System.out.println("(15) Listar Empleados");
-		System.out.println("(16) Listar Jugadores");
-		System.out.println("(17) Listar Entrenadores Principales");
-		System.out.println("(18) Listar Asistentes Tecnicos");
-		System.out.println("(19) Imprimir la informacion del club");
-		System.out.println("(20) Imprimir los camerinos");
-		System.out.println("(21) Imprimir el sector de oficinas");
-		System.out.println("(22) Salir");
-		System.out.println("**************MENU**************");
+		System.out.println("\n***********************MENU***********************");
+		System.out.println("(1) Contratar un empleado");
+		System.out.println("(2) Despedir un empleado");
+		System.out.println("(3) Asignar entrenador principal a un equipo");
+		System.out.println("(4) Agregar asistente tecnico a un equipo");
+		System.out.println("(5) Agregar un jugador a un equipo");
+		System.out.println("(6) Eliminar el entrenador principal de un equipo)");
+		System.out.println("(7) Eliminar un asistente tecnico de un equipo");
+		System.out.println("(8) Eliminar un jugador de un equipo");
+		System.out.println("(9) Asignar un camerino a un equipo");
+		System.out.println("(10) Agregar una alineacion a un equipo");
+		System.out.println("(11) Listar la informacion de un equipo");
+		System.out.println("(12) Imprimir las alineaciones de un equipo");
+		System.out.println("(13) Listar Empleados");
+		System.out.println("(14) Listar Jugadores");
+		System.out.println("(15) Listar Entrenadores Principales");
+		System.out.println("(16) Listar Asistentes Tecnicos");
+		System.out.println("(17) Imprimir la informacion del club");
+		System.out.println("(18) Imprimir los camerinos");
+		System.out.println("(19) Imprimir el sector de oficinas");
+		System.out.println("(20) Salir");
+		System.out.println("***********************MENU***********************");
 	}
 	/**
 	* Gets the choice of the menu options
@@ -90,16 +90,15 @@ public class Menu{
 		return choice;
 	}
 	/**
-	* Read the information of a player
-	* <b> pre: </b> 
-	*			1. The player's name must be unique <br>
-	*			2. The player's identifier must be unique <br>
-	*			3. The player's state can only be "activo" or "inactivo" <br>
-	*			4. The player's position can onlye be between 1 and 4
+	* Read the initial information to contract an employee
+	* <b> pre: </b> <br>
 	* <b> post: </b>
-	* @return String 
+	*			1. The employee's name must be unique <br>
+	*			2. The employee's identifier must be unique <br>
+	*			3. The employee's state can only be "activo" or "inactivo" <br>
+	*			4. The choice can only be between 1 and 4
 	*/
-	public String readPlayer(){
+	public void readEmployee(){
 		System.out.println("Ingrese el nombre del empleado:");
 		String name = sc.nextLine();
 		System.out.println("Ingrese el identificador del empleado:");
@@ -113,6 +112,32 @@ public class Menu{
 		if(stateStr.equalsIgnoreCase("Activo")){
 			state = true;
 		}else state = false;
+		showContractMenu();
+		int choice = readOption();
+		doOperationContract(choice, name, identifier, salary, state);
+	}
+	/**
+	* Show the contract menu options
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	*/
+	public void showContractMenu(){
+		System.out.println("******************TIPO DE EMPLEADO*****************");
+		System.out.println("(1) Contratar un jugador");
+		System.out.println("(2) Contratar un entrenador principal");
+		System.out.println("(3) Contratar un asistente tecnico");
+	}
+	/**
+	* Read the information of a player
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @param name Employee's name
+	* @param identifier Employee's identifier
+	* @param salary Employee's salary
+	* @param state Employee's state
+	* @return String 
+	*/
+	public String readPlayer(String name, int identifier, int salary, boolean state){
 		System.out.println("Ingrese el numero de su camiseta de juego:");
 		int tShirtNumber = sc.nextInt();
 		System.out.println("Ingrese la cantidad de goles del jugador en el club:");
@@ -131,27 +156,15 @@ public class Menu{
 	}
 	/**
 	* Read the information of a head coach
-	* <b> pre: </b> 
-	*			1. The coach's name must be unique <br>
-	*			2. The coach's identifier must be unique <br>
-	*			3. The coach's state can only be "activo" or "inactivo"
+	* <b> pre: </b> <br>
 	* <b> post: </b>
+	* @param name Employee's name
+	* @param identifier Employee's identifier
+	* @param salary Employee's salary
+	* @param state Employee's state
 	* @return String
 	*/
-	public String readHeadCoach(){
-		System.out.println("Ingrese el nombre del empleado:");
-		String name = sc.nextLine();
-		System.out.println("Ingrese el identificador del empleado:");
-		int identifier = sc.nextInt();
-		System.out.println("Ingrese el salario del empleado:");
-		int salary = sc.nextInt();
-		sc.nextLine();
-		System.out.println("Ingrese el estado del empleado (activo o inactivo):");
-		String stateStr = sc.nextLine();
-		boolean state = false;
-		if(stateStr.equalsIgnoreCase("Activo")){
-			state = true;
-		}else state = false;
+	public String readHeadCoach(String name, int identifier, int salary, boolean state){
 		System.out.println("Ingrese los años de experiencia que tiene:");
 		int yearsExperience = sc.nextInt();
 		System.out.println("Ingrese cantidad de equipos que ha manejado en su carrera:");
@@ -165,28 +178,15 @@ public class Menu{
 	}
 	/**
 	* Read the information of a technical assistant
-	* <b> pre: </b> 
-	*			1. The assistant's name must be unique <br>
-	*			2. The assistant's identifier must be unique <br>
-	*			3. The assistant's state can only be "activo" or "inactivo" <br>
-	*			4. The assistant's expertises can be a maximum of 4
+	* <b> pre: </b> The assistant's expertises can be a maximum of 4<br>
 	* <b> post: </b>
+	* @param name Employee's name
+	* @param identifier Employee's identifier
+	* @param salary Employee's salary
+	* @param state Employee's state
 	* @return String
 	*/
-	public String readTechnicalAssistant(){
-		System.out.println("Ingrese el nombre del empleado:");
-		String name = sc.nextLine();
-		System.out.println("Ingrese el identificador del empleado:");
-		int identifier = sc.nextInt();
-		System.out.println("Ingrese el salario del empleado:");
-		int salary = sc.nextInt();
-		sc.nextLine();
-		System.out.println("Ingrese el estado del empleado (activo o inactivo):");
-		String stateStr = sc.nextLine();
-		boolean state = false;
-		if(stateStr.equalsIgnoreCase("Activo")){
-			state = true;
-		}else state = false;
+	public String readTechnicalAssistant(String name, int identifier, int salary, boolean state){
 		System.out.println("Ingrese los años de experiencia que tiene:");
 		int yearsExperience = sc.nextInt();
 		System.out.println("El empleado fue un jugador de futbol:");
@@ -215,8 +215,33 @@ public class Menu{
 		}else return "No se pudo agregar el empleado";
 	}
 	/**
+	* Do an action depending on the choice
+	* <b> pre: </b> <br>
+	* <b> post: </b> 
+	* @param choice User choice
+	* @param name Employee's name
+	* @param identifier Employee's identifier
+	* @param salary Employee's salary
+	* @param state Employee's state
+	*/
+	public void doOperationContract(int choice, String name, int identifier, int salary, boolean state){
+		switch(choice){
+			case CONTRACT_PLAYER:
+				System.out.println(readPlayer(name, identifier, salary, state));
+				break;
+			case CONTRACT_HEAD_COACH:
+				System.out.println(readHeadCoach(name, identifier, salary, state));
+				break;
+			case CONTRACT_TECHNICAL_ASSISTANT:
+				System.out.println(readTechnicalAssistant(name, identifier, salary, state));
+				break;
+			default:
+				System.out.println("Tipo de empleado inexistente.");
+		}
+	}
+	/**
 	* Throw an employee
-	* <b> pre: </b> The emlpoyee's name and identifier must match <br>
+	* <b> pre: </b> The employee's name and identifier must match <br>
 	* <b> post: </b>
 	* @return String
 	*/
@@ -429,14 +454,8 @@ public class Menu{
 	*/
 	public void doOperation(int choice){
 		switch(choice){
-			case ADD_PLAYER:
-				System.out.println(readPlayer());
-				break;
-			case ADD_HEAD_COACH:
-				System.out.println(readHeadCoach());
-				break;
-			case ADD_TECHNICAL_ASSISTANT:
-				System.out.println(readTechnicalAssistant());
+			case CONTRACT_EMPLOYEE:
+				readEmployee();
 				break;
 			case THROW_EMPLOYEE:
 				System.out.println(throwEmployee());
