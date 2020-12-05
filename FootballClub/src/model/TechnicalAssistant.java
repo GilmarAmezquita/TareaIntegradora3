@@ -8,7 +8,7 @@ public class TechnicalAssistant extends Coach{
 	* <b> pre: </b> 
 	*			1. The technical's name must be unique <br>
 	*			2. The technical's identifier must be unique <br>
-	*			3. The technical's salary only can be natural numbers <br>
+	*			3. The technical's salary can only be natural numbers <br>
 	*			4. The technical's state is true if the state is active <br>
 	*			5. The technical's state is false if the state is inactive <br>
 	*			6. The technical's boolean player is true if the technical was a player <br>
@@ -53,7 +53,7 @@ public class TechnicalAssistant extends Coach{
 	* <b> post: </b>
 	* @param numExpertises Array of the technical's expertises
 	*/
-	public void enumExpertise(int[] numExpertises){
+	private void enumExpertise(int[] numExpertises){
 		for(int i = 0; i<MAX_EXPERTISE; i++){
 			for(int j = 0; j<MAX_EXPERTISE; j++){
 				if(i!=j){

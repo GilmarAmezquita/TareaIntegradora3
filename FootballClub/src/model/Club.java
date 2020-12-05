@@ -5,17 +5,22 @@ public class Club{
 	private final static int ROOM_SIZE_1 = 6;
 	private final static int ROOM_SIZE_2 = 7;
 	private final static int TEAMS = 2;
-	
 	private String name;
 	private String nit;
 	private String fundationDate;
 	private ArrayList<Employee> employees;
 	private Team[] teams;
-	
 	private Player[][] dressingRoom1;
 	private Player[][] dressingRoom2;
 	private Coach[][] officeSector;
-	
+	/**
+	* Constructor method for the club
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @param nit Club's nit
+	* @param name Club's name
+	* @param fundationDate Club's fundationDate
+	*/
 	public Club(String nit, String name, String fundationDate){
 		this.nit = nit;
 		this.name = name;
@@ -28,19 +33,39 @@ public class Club{
 		this.dressingRoom2 = new Player[ROOM_SIZE_2][ROOM_SIZE_2];
 		this.officeSector = new Coach[ROOM_SIZE_1][ROOM_SIZE_1];
 	}
-	
+	/**
+	* Get the club's nit
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @return nit
+	*/
 	public String getNit(){
 		return nit;
 	}
-	
+	/**
+	* Get the club's name
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @return name
+	*/
 	public String getName(){
 		return name;
 	}
-	
+	/**
+	* Replace the club's name
+	* <b> pre: </b> <br>
+	* <b> post: </b>
+	* @param name New club's name
+	*/
 	public void setName(String name){
 		this.name = name;
 	}
-	
+	/**
+	* Get the club's fundation date
+	* <b> pre: </b> <br> 
+	* <b> post: </b>
+	* @return fundationDate
+	*/
 	public String getFundationDate(){
 		return fundationDate;
 	}

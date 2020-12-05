@@ -5,8 +5,11 @@ public abstract class Coach extends Employee{
 	* Constructor mothod for coachs 
 	* <b> pre: </b> 
 	*			1. The coach's name must be unique <br>
-	*			2. The identifier must be unique <br>
-	*			3. The coach's years of experience only can be natural numbers
+	*			2. The coach's identifier must be unique <br>
+	*			3. The coach's salary can only be natural numbers <br>
+	*			4. The coach's state is true if the state is active <br>
+	*			5. The coach's state is false if the state is inactive <br>
+	*			6. The coach's years of experience can only be natural numbers 
 	* <b> post: </b>
 	* @param name coach's name
 	* @param identifier coach's identifier

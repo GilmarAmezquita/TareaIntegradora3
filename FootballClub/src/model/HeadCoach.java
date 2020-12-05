@@ -9,7 +9,7 @@ public class HeadCoach extends Coach{
 	* <b> pre: </b> 
 	*			1. The head coach's name must be unique <br>
 	*			2. The head coach's identifier must be unique <br>
-	*			3. The head coach's salary only can be natural numbers <br>
+	*			3. The head coach's salary can only be natural numbers <br>
 	*			4. The head coach's state is true if the state is active <br>
 	*			5. The head coach's state is false if the state is inactive
 	* <b> post: </b> Initializes a head coach with all its information
